@@ -1,0 +1,39 @@
+### Nama/NPM : Gilang Sakti Aditya / 2006529493 ###
+### Kelas: Metnum-04 ###
+### Tugas 6 Osillasi ###
+### Pengerjaan dilakukan menggunakan python ###
+### Asumsi yang digunakan : t = 20 ; sudut 50° ###
+
+# import Library
+import numpy as np 
+from numpy import sin, cos
+from matplotlib import pyplot as plt 
+from scipy.integrate import odeint
+
+# define the equations
+def equations(y0, t):
+	theta, x = y0
+	f = [x, -(g/l) * sin(theta)]
+	return f
+
+def plot_results(time, theta1, theta2):
+	plt.plot(time, theta1[:,0])
+	plt.plot(time, theta2)
+    
+	s = '(Initial Angle = ' + str(initial_angle) + ' degrees)'
+	plt.title('Pendulum Motion: ' + s)
+	plt.xlabel('time (s)')
+	plt.ylabel('angle (rad)')
+	plt.grid(True)
+	plt.legend(['nonlinear', 'linear'], loc='lower right')
+	plt.show()
+
+# parameter
+l = 1.5
+g = 9.8
+time = np.arange(0, 20.0, 0.1)
+
+# initial conditions
+initial_angle = 45.0
+theta0 = np.radians(initial_angle)
+x0 = np.radians(0.0)
